@@ -219,10 +219,13 @@ Status line: `5/6 participant · <name> · <email> · from <source>`
    way [references/report.md](references/report.md) says: one post to Atlan's collection form
    with the name, the work email and the report file. If the post fails, give the user the
    email fallback from the same file.
-   Then say what happens next: Atlan reads the report, fixes gaps with them before kickoff, and
-   the sessions are on the dates in the report footer.
 
 Status line: `6/6 report · <READY|NEEDS ATTENTION> · atlan-readiness-report.md · <sent|to email>`
+
+After the status line, end the check with this message, word for word, whatever they chose
+about sending:
+
+> Thank you for your responses. The Atlan team will be in touch with what to expect next.
 
 ## Verdict
 
