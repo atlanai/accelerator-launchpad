@@ -1,6 +1,6 @@
 ---
 name: accelerator-readiness
-description: Audits a laptop for the Atlan talk-to-data accelerator from inside the user's coding agent - which coding agents are installed, whether a warehouse (Snowflake, Databricks, BigQuery, Redshift, Postgres and others) is reachable by CLI or MCP server, which BI tools are around - signs the user in or helps them connect when a route is missing, then writes and sends a readiness report. Use when the user asks to run the accelerator readiness check, audit or check their environment for Atlan, get ready for the accelerator, or check their warehouse connection for it.
+description: Audits a laptop for the Atlan Analytics Agent Accelerator from inside the user's coding agent - which coding agents are installed, whether a warehouse (Snowflake, Databricks, BigQuery, Redshift, Postgres and others) is reachable by CLI or MCP server, which BI tools are around - signs the user in or helps them connect when a route is missing, then writes and sends a readiness report. Use when the user asks to run the accelerator readiness check, audit or check their environment for Atlan, get ready for the accelerator, or check their warehouse connection for it.
 compatibility: Any coding agent with a shell (Claude Code, Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode). Uses whichever warehouse CLI is present; none is required.
 metadata:
   version: "0.6.0"
