@@ -3,16 +3,17 @@ name: accelerator-readiness
 description: Audits a laptop for the Atlan Analytics Agent Accelerator from inside the user's coding agent - which coding agents are installed, whether a warehouse (Snowflake, Databricks, BigQuery, Redshift, Postgres and others) is reachable by CLI or MCP server, which BI tools are around - signs the user in or helps them connect when a route is missing, then writes and sends a readiness report. Use when the user asks to run the accelerator readiness check, audit or check their environment for Atlan, get ready for the accelerator, or check their warehouse connection for it.
 compatibility: Any coding agent with a shell (Claude Code, Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode). Uses whichever warehouse CLI is present; none is required.
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
   author: Atlan
 ---
 
 # Accelerator readiness check
 
-Find out whether this laptop is ready for the accelerator: a coding agent, one way to run
-SQL on the team's warehouse as this user, and a BI dashboard to start from. When something is
-missing, fix it now with the user. Finish with a short report the user sends to Atlan. About
-ten minutes. No Atlan account is needed.
+During the accelerator, Atlan and the user build an agent together for one use case of
+theirs. Start by asking what that use case is. Then find out whether this laptop is ready to
+build it: a coding agent, one way to run SQL on the team's warehouse as this user, and a BI
+dashboard to start from. When something is missing, fix it now with the user. Finish with a
+short report the user sends to Atlan. About ten minutes. No Atlan account is needed.
 
 ## Rules
 
@@ -44,8 +45,8 @@ ten minutes. No Atlan account is needed.
 - **Every yes is a button, not a sentence.** Whenever the user must choose (run a check, sign
   in, install something, confirm their identity, send the report), ask through your host's
   question tool so they see options to click, never a question buried in prose:
-  - Claude Code: the `AskUserQuestion` tool, one question, two or three options, the
-    recommended one first and labelled "(Recommended)".
+  - Claude Code: the `AskUserQuestion` tool, one question, two or three options (four for
+    the BI tool question in step 4), the recommended one first and labelled "(Recommended)".
   - Codex: `request_user_input` when your collaboration mode allows it; otherwise the command
     approval prompt is the choice: present the exact command with a one-line description of
     what it does, and let the user approve or decline it there.
@@ -60,6 +61,7 @@ Copy this checklist into your first reply and tick it as you go:
 
 ```
 Readiness check
+- [ ] Use case: what we will build an agent for
 - [ ] 1 Coding agent: this one, and what else is installed
 - [ ] 2 Warehouse route: MCP tools, CLIs, one read-only check (sign in again if needed)
 - [ ] 3 No route: help the user connect, then re-check
@@ -67,6 +69,25 @@ Readiness check
 - [ ] 5 Who the participant is (inferred, confirmed in one line)
 - [ ] 6 Report written, shown, sent
 ```
+
+## Start: the use case
+
+Before any check, tell the user in two sentences why this exists: during the accelerator,
+Atlan builds an agent together with them for a use case of their own, and every check that
+follows (coding agent, warehouse access, starting dashboard) is so they arrive at kickoff
+ready to build it. Then ask one open question in chat, since the answer is a sentence and not
+a choice:
+
+"What would you like to build an agent for during the accelerator? A sentence or two is
+enough: the questions your team asks of its data again and again, who asks them, and where
+the answer lives today. For example: 'Sales leads ask weekly which accounts are at risk of
+churn; today an analyst pulls it from the Customer Health dashboard.'"
+
+"Not sure yet" is a fine answer; Atlan shapes the use case with them before kickoff. Keep the
+answer in their words. Refer back to it later where it helps, for example when asking which
+dashboard they would start from.
+
+Status line: `use case · <their use case in under ten words, or not sure yet>`
 
 ## Step 1: coding agent
 
@@ -148,14 +169,21 @@ Week one starts from one dashboard the user already has, so find what is here an
 2. Look for desktop BI apps and a shallow count of local BI files using
    [references/bi-tools.md](references/bi-tools.md). Counts and tool names only, never file names
    or contents.
-3. Ask two questions: "Which BI tool does your team use?" and "Which one dashboard would you
-   start the accelerator from?" Ask one at a time. Do not ask for screenshots, exports,
-   uploads, or files, or whether the user can provide them.
-4. Record the answers as participant-provided context. Finding an app or MCP server, or
+3. Ask two questions, one at a time. First "Which BI tool does your team use?" with exactly
+   these options: Tableau, Power BI, Looker, Sigma, with any tool found above moved to the
+   front. Claude Code adds "Other" itself; in other agents add "Other" as the last option.
+   Then "Which one dashboard would you start the accelerator from?" Do not ask for
+   screenshots, exports, uploads, or files, or whether the user can provide them.
+4. Then ask whether they know the tables behind it: "Do you know which tables in your
+   warehouse hold the data for that dashboard, or would answer the questions in your use
+   case?" Options: "Yes, I can name them", "Roughly", "Not sure". On yes or roughly, take the
+   table or schema names in chat; rough answers are fine. On not sure, reply "No worries,
+   we'll work with you 1:1 if these are needed" and move on.
+5. Record the answers as participant-provided context. Finding an app or MCP server, or
    selecting a tool or dashboard, does not verify authentication or dashboard access. This
    step does not check BI access; say "not checked" in the report, never "verified" or "passed".
 
-Status line: `4/6 bi · <tools found or none> · dashboard: <answer or unanswered> · access: not checked`
+Status line: `4/6 bi · <tools found or none> · dashboard: <answer or unanswered> · tables: <named|rough|not sure> · access: not checked`
 
 ## Step 5: who the participant is
 
@@ -191,10 +219,13 @@ Status line: `5/6 participant · <name> · <email> · from <source>`
    way [references/report.md](references/report.md) says: one post to Atlan's collection form
    with the name, the work email and the report file. If the post fails, give the user the
    email fallback from the same file.
-   Then say what happens next: Atlan reads the report, fixes gaps with them before kickoff, and
-   the sessions are on the dates in the report footer.
 
 Status line: `6/6 report · <READY|NEEDS ATTENTION> · atlan-readiness-report.md · <sent|to email>`
+
+After the status line, end the check with this message, word for word, whatever they chose
+about sending:
+
+> Thank you for your responses. The Atlan team will be in touch with what to expect next.
 
 ## Verdict
 

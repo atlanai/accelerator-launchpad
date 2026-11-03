@@ -4,6 +4,12 @@ A skill for your coding agent that checks whether your laptop is ready for the
 [Atlan](https://atlan.com) Analytics Agent Accelerator, signs you in or helps you connect where
 something is missing, and writes a short readiness report to send to us.
 
+During the accelerator we build an agent together, with you, for one use case of your own:
+a question your team asks of its data again and again. The check starts by asking what that
+use case is. Everything after it (your coding agent, your warehouse access, the dashboard you
+would start from) is so we can come to kickoff ready to build that agent with you, not to
+spend the first session on setup.
+
 It follows the [Agent Skills](https://agentskills.io) format, so it works in Claude Code,
 Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode and other agents that read
 `SKILL.md` files. About ten minutes. No Atlan account needed.
@@ -44,20 +50,22 @@ Open your coding agent and say:
 Run the Atlan accelerator readiness check.
 ```
 
-The agent loads the skill and walks you through six short steps with only a handful of questions,
-each one a choice you click rather than a sentence to type. It asks before it runs anything
+The agent loads the skill, asks about your use case, and walks you through six short steps
+with only a handful of questions. Apart from the use case, each one is a choice you click
+rather than a sentence to type. It asks before it runs anything
 against your warehouse, and it asks again before it sends the report.
 
 ## What the agent does
 
 | Step | What happens |
 |---|---|
+| Use case | Asks what you want to build an agent for during the accelerator, in a sentence or two |
 | 1. Coding agent | Names the agent you are in, lists the others installed, and the MCP server names each has configured |
 | 2. Warehouse route | Looks for your warehouse in its own tools and in the CLIs on your machine: Snowflake, Databricks, BigQuery, Redshift, Postgres and others. With your yes, runs one read-only statement to prove the connection, and if a sign-in has expired, opens the browser sign-in for you from the same session |
 | 3. Connect | If no route works, walks you through installing the CLI and signing in, then checks again. Only commands that ask for a password or token go to your own terminal |
-| 4. BI | Finds BI apps and MCP servers, counts local BI files, and asks which BI tool and dashboard you would start from. No screenshots or exports are requested; BI access is not verified |
+| 4. BI | Finds BI apps and MCP servers, counts local BI files, and asks which BI tool and dashboard you would start from and whether you know the tables behind it. No screenshots or exports are requested; BI access is not verified |
 | 5. Who you are | Reads your name and work email from the machine (your warehouse sign-in, git, the OS account) and confirms them in one line |
-| 6. Report | Writes `atlan-readiness-report.md` in your home folder, shows the summary, and with your yes posts it to Atlan's collection form |
+| 6. Report | Writes `atlan-readiness-report.md` in your home folder, shows the summary, and with your yes posts it to Atlan's collection form, then thanks you and says the Atlan team will be in touch with next steps |
 
 The accelerator needs one way for your agent to run SQL as you. A warehouse CLI or an MCP
 server, either works. If neither is set up yet, step 3 is the point: the agent gets you
@@ -90,7 +98,7 @@ email [ailabs@atlan.com](mailto:ailabs@atlan.com).
 Only the report, and only when you say yes. It contains tool names and versions, the names of
 your warehouse, BI and Atlan MCP servers and a count of the others, connection and profile
 names, the signed-in user and role, the outcome of each check, BI tool names and file counts,
-your name and work email, and your BI answers. A connection or server name that looks like an
+your name and work email, your use case, your BI answers, and any table names you give. A connection or server name that looks like an
 account identifier is replaced with a neutral label before it is written. It never contains
 credentials, tokens, hostnames, account identifiers, file names or data rows. The skill reads
 configuration files only to list names, and every command it runs on its own is read-only.

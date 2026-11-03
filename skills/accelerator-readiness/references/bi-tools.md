@@ -30,14 +30,22 @@ exports, uploads, and files are not needed; do not ask for them or whether they 
 
 Two questions, one at a time:
 
-1. Which BI tool does your team use day to day (Tableau, Power BI, Looker, Sigma, other)?
+1. Which BI tool does your team use day to day? Options: Tableau, Power BI, Looker, Sigma,
+   and Other. Always offer all four named tools, Tableau included, with any tool found on
+   this machine moved to the front.
 2. Which one dashboard would you start the accelerator from?
 
 A "not sure" is a fine answer; Atlan picks one with them in the one-on-one.
+
+Then one more: do they know which warehouse tables hold the data for that dashboard, or would
+answer the questions in their use case? Options: "Yes, I can name them", "Roughly", "Not
+sure". Take names in chat on yes or roughly. On not sure: "No worries, we'll work with you
+1:1 if these are needed."
 
 ## Record
 
 - Tools found (apps, MCP servers), file counts by type
 - The BI tool they named and the starting dashboard
+- The tables they named for the use case, or not sure
 - BI access: not checked. Tool discovery and participant answers do not verify
   authentication or dashboard access; do not mark BI as verified or passed.
