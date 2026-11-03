@@ -63,6 +63,28 @@ The accelerator needs one way for your agent to run SQL as you. A warehouse CLI 
 server, either works. If neither is set up yet, step 3 is the point: the agent gets you
 connected before kickoff, or records exactly where it got stuck so we can help.
 
+## Why we ask and where your answers go
+
+**Why.** During the accelerator we build an agent with you for your use case. The report
+tells us, before kickoff, what you want to build, how your agent can reach your warehouse, and
+which dashboard and tables to start from. We use it only to prepare for the accelerator with
+you.
+
+**Where it's stored.**
+
+- **On your laptop:** the agent writes the report to `atlan-readiness-report.md` in your home
+  folder. It stays there until you delete it.
+- **With Atlan, only if you choose Send:** the report, your name and your work email go to a
+  Google Form owned by Atlan. Responses stay within Atlan, are not public, and only the
+  accelerator team can see them.
+- **If sending fails:** you email the file yourself, to an Atlan address the agent gives you.
+
+Your coding agent handles your answers the way it handles any conversation, under your own
+agreement with its provider. Atlan receives nothing unless you choose Send.
+
+**How long we keep it.** For the length of the accelerator. To see or delete your report,
+email [ailabs@atlan.com](mailto:ailabs@atlan.com).
+
 ## What leaves your machine
 
 Only the report, and only when you say yes. It contains tool names and versions, the names of
