@@ -14,46 +14,22 @@ It follows the [Agent Skills](https://agentskills.io) format, so it works in Cla
 Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode and other agents that read
 `SKILL.md` files. About ten minutes. No Atlan account needed.
 
-## Install
+## Get started
 
-```sh
-npx skills add atlanai/accelerator-launchpad -g
-```
-
-The [skills CLI](https://github.com/vercel-labs/skills) detects the coding agents on your
-machine and installs the skill into the ones you pick. `-g` makes it available in every
-folder; add `-a claude-code`, `-a codex` or `-a cursor` to target one agent.
-
-<details>
-<summary>Without Node.js</summary>
-
-Clone this repository and copy `skills/accelerator-readiness` into your agent's skills
-folder:
-
-| Agent | Folder |
-|---|---|
-| Claude Code | `~/.claude/skills/` |
-| Codex | `~/.agents/skills/` |
-| Cursor | `~/.cursor/skills/` |
-| Gemini CLI | `~/.gemini/skills/` |
-| GitHub Copilot CLI | `~/.copilot/skills/` |
-| OpenCode | `~/.config/opencode/skills/` |
-| Windsurf | `~/.codeium/windsurf/skills/` |
-
-</details>
-
-## Run
-
-Open your coding agent and say:
+Open your coding agent on your laptop (Claude Code, Codex, Cursor, or similar) and paste:
 
 ```text
-Run the Atlan accelerator readiness check.
+Help me get started with https://github.com/atlanai/accelerator-launchpad
 ```
 
-The agent loads the skill, asks about your use case, and walks you through six short steps
-with only a handful of questions. Apart from the use case, each one is a choice you click
-rather than a sentence to type. It asks before it runs anything
-against your warehouse, and it asks again before it sends the report.
+Your agent reads the [readiness skill](skills/accelerator-readiness/SKILL.md) and its
+references from this repository, then guides you through the check in the same conversation.
+You don't need to install the skill separately or send another prompt to run it.
+
+The agent asks about your use case and walks you through six short steps with only a handful
+of questions. Apart from the use case, each one is a choice you click rather than a sentence
+to type. It asks before it runs anything against your warehouse, and it asks again before it
+sends the report.
 
 ## What the agent does
 
