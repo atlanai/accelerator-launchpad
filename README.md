@@ -101,6 +101,7 @@ skills/accelerator-readiness/
   references/other-warehouses.md Postgres, ClickHouse, Fabric and SQL Server, Trino, DuckDB
   references/bi-tools.md        what to look for and the two questions
   references/report.md          the report template and where it goes
+  references/builder.md         the Builder: start frame, quips, site pass and inspection
 ```
 
 ## Contact us
