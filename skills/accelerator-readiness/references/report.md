@@ -18,7 +18,7 @@ The report may contain: tool names and versions, the names of warehouse, BI and 
 servers and a count of the others, connection and profile names after the identifier check in
 SKILL.md (anything that looks like an account id becomes `snowflake connection 1`), the
 signed-in user, role and warehouse names, check outcomes with error text, BI tool names and file
-counts, the participant's name and work email, their use case, and their BI answers. It must not contain: hostnames, account identifiers,
+counts, the participant's name and work email, their use case, their BI answers, and the table or schema names they gave. It must not contain: hostnames, account identifiers,
 workspace or account ids, tokens, file names, SQL results beyond "a row came back". Read it
 once before showing it.
 
@@ -73,6 +73,7 @@ Next action: <one sentence>
 - Found: <apps, MCP servers, file counts>
 - Team's BI tool: <…>
 - Starting dashboard: <…>
+- Tables for the use case: <names as given | rough area | not sure | unanswered>
 - BI access: not checked
 
 ## Machine

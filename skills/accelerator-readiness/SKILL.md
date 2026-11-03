@@ -172,11 +172,16 @@ Week one starts from one dashboard the user already has, so find what is here an
 3. Ask two questions: "Which BI tool does your team use?" and "Which one dashboard would you
    start the accelerator from?" Ask one at a time. Do not ask for screenshots, exports,
    uploads, or files, or whether the user can provide them.
-4. Record the answers as participant-provided context. Finding an app or MCP server, or
+4. Then ask whether they know the tables behind it: "Do you know which tables in your
+   warehouse hold the data for that dashboard, or would answer the questions in your use
+   case?" Options: "Yes, I can name them", "Roughly", "Not sure". On yes or roughly, take the
+   table or schema names in chat; rough answers are fine. On not sure, reply "No worries,
+   we'll work with you 1:1 if these are needed" and move on.
+5. Record the answers as participant-provided context. Finding an app or MCP server, or
    selecting a tool or dashboard, does not verify authentication or dashboard access. This
    step does not check BI access; say "not checked" in the report, never "verified" or "passed".
 
-Status line: `4/6 bi · <tools found or none> · dashboard: <answer or unanswered> · access: not checked`
+Status line: `4/6 bi · <tools found or none> · dashboard: <answer or unanswered> · tables: <named|rough|not sure> · access: not checked`
 
 ## Step 5: who the participant is
 

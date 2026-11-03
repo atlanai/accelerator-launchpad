@@ -63,7 +63,7 @@ against your warehouse, and it asks again before it sends the report.
 | 1. Coding agent | Names the agent you are in, lists the others installed, and the MCP server names each has configured |
 | 2. Warehouse route | Looks for your warehouse in its own tools and in the CLIs on your machine: Snowflake, Databricks, BigQuery, Redshift, Postgres and others. With your yes, runs one read-only statement to prove the connection, and if a sign-in has expired, opens the browser sign-in for you from the same session |
 | 3. Connect | If no route works, walks you through installing the CLI and signing in, then checks again. Only commands that ask for a password or token go to your own terminal |
-| 4. BI | Finds BI apps and MCP servers, counts local BI files, and asks which BI tool and dashboard you would start from. No screenshots or exports are requested; BI access is not verified |
+| 4. BI | Finds BI apps and MCP servers, counts local BI files, and asks which BI tool and dashboard you would start from and whether you know the tables behind it. No screenshots or exports are requested; BI access is not verified |
 | 5. Who you are | Reads your name and work email from the machine (your warehouse sign-in, git, the OS account) and confirms them in one line |
 | 6. Report | Writes `atlan-readiness-report.md` in your home folder, shows the summary, and with your yes posts it to Atlan's collection form |
 
