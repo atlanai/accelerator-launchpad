@@ -19,7 +19,7 @@ Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode and other agen
 Open your coding agent on your laptop (Claude Code, Codex, Cursor, or similar) and paste:
 
 ```text
-Help me get started with https://github.com/atlanai/accelerator-launchpad
+Help me get started with https://github.com/atlanai/analytics-agent-accelerator
 ```
 
 Your agent reads the [readiness skill](skills/accelerator-readiness/SKILL.md) and its
