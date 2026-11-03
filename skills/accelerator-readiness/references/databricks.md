@@ -28,16 +28,17 @@ which; never pick for the user. Then prove the sign-in with the one call that do
 databricks current-user me --profile <name>
 ```
 
-It returns the signed-in user. If it fails with an expired or invalid token, sign in from
+It returns the signed-in user (`userName` is the email; keep it for step 5). If its `groups`
+include `admins`, the outcome is `verified, admin role`. If it fails with an expired or invalid token, sign in from
 here (next section) and run it again. Then, with a yes, one read-only statement:
 
 ```bash
-databricks experimental aitools tools query "select 1 as ok" --profile <name>
+databricks experimental aitools tools query "select current_user() as user, current_catalog(), current_schema()" --profile <name>
 ```
 
 A row back means verified. If that subcommand is missing (older CLI), use
 `databricks warehouses list --profile <name>` to find a warehouse id and run
-`databricks api post /api/2.0/sql/statements --json '{"warehouse_id":"<id>","statement":"select 1","wait_timeout":"30s"}' --profile <name>`;
+`databricks api post /api/2.0/sql/statements --json '{"warehouse_id":"<id>","statement":"select current_user()","wait_timeout":"30s"}' --profile <name>`;
 `status.state` of `SUCCEEDED` is verified, `PENDING` means the warehouse is starting and the
 access itself works. No SQL warehouse visible to the user is a finding: "signed in, no SQL
 warehouse", and their admin needs to grant one.
@@ -67,10 +68,10 @@ user's terminal. Re-run `current-user me` afterwards.
 A server in your tool list whose name contains `databricks` or `genie`. Ask, then run once:
 
 ```sql
-select current_catalog(), current_schema()
+select current_user(), current_catalog(), current_schema()
 ```
 
-Listed but not callable means the user has to sign in from their agent (Claude Code `/mcp`;
+Keep the user for step 5. Listed but not callable means the user has to sign in from their agent (Claude Code `/mcp`;
 Codex `codex mcp login <name>`; Cursor Settings, MCP).
 
 ## Connect: Databricks CLI (recommended)

@@ -19,25 +19,25 @@ or runs in their terminal.
 - Sign in: a password in `~/.pgpass` (the user writes it: `host:port:db:user:password`, mode
   `0600`), or `PGPASSWORD` exported in their shell before they start the agent. No browser
   flow exists, so nothing to run here.
-- Check, with a yes: `psql "host=<host> port=5432 dbname=<db> user=<user> sslmode=require" -Atc "select 1"`.
-  A `1` back means verified. A password prompt means `.pgpass` is missing or does not match;
+- Check, with a yes: `psql "host=<host> port=5432 dbname=<db> user=<user> sslmode=require" -Atc "select current_user, current_setting('is_superuser')"`.
+  A user back means verified; `on` in the second column is a superuser, so `verified, admin role`. A password prompt means `.pgpass` is missing or does not match;
   hand the command to the user's terminal.
 - MCP: a server named `postgres` in the agent, usually configured with a connection URL that
-  holds the password; never read that config. Run `select 1` through it.
+  holds the password; never read that config. Run `select current_user` through it.
 
 ## ClickHouse
 
 - Present: `clickhouse --version` or `clickhouse-client --version`.
 - Sign in: host, user and password as flags or in `~/.clickhouse-client/config.xml`; the
   password part is the user's, in their terminal.
-- Check: `clickhouse-client --host <host> --secure --user <user> --query "select 1"` (ClickHouse
+- Check: `clickhouse-client --host <host> --secure --user <user> --query "select currentUser()"` (ClickHouse
   Cloud needs `--secure`). MCP: the `mcp-clickhouse` server, same statement through it.
 
 ## Microsoft Fabric and SQL Server
 
 - Present: `sqlcmd --version` (the Go `sqlcmd`), `az --version`.
 - Sign in from here: `az login` opens a browser and waits; run it after a yes with a
-  five-minute timeout. Then `sqlcmd -S <server> -d <database> --authentication-method ActiveDirectoryAzCli -Q "select 1"`.
+  five-minute timeout. Then `sqlcmd -S <server> -d <database> --authentication-method ActiveDirectoryAzCli -Q "select suser_sname()"`.
 - Check: the `sqlcmd` line above. A Fabric SQL endpoint takes the same form.
 
 ## Trino and Starburst
@@ -46,7 +46,7 @@ or runs in their terminal.
 - Sign in: `trino --server https://<host> --user <user> --external-authentication` opens a
   browser; it can run here. Password auth (`--password`) prompts, so that one is the user's
   terminal.
-- Check: add `--execute "select 1"` to the sign-in line.
+- Check: add `--execute "select current_user"` to the sign-in line.
 
 ## DuckDB and MotherDuck
 
@@ -58,6 +58,6 @@ or runs in their terminal.
 
 ## Anything else
 
-Record the warehouse name and how the user reaches it today, run `select 1` through whatever
+Record the warehouse name and how the user reaches it today, run `select current_user` (or that engine's equivalent) through whatever
 tool they already use if it is in your tool list, and mark the route as "other warehouse, not
 a blocker". Atlan brings the right connector to the one-on-one.

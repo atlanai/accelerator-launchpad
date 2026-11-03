@@ -25,10 +25,10 @@ the user which project holds the data and pass it with `--project_id`.
 With a yes, one read-only statement:
 
 ```bash
-bq query --use_legacy_sql=false --format=json --project_id=<project> 'select 1 as ok'
+bq query --use_legacy_sql=false --format=json --project_id=<project> 'select session_user() as user'
 ```
 
-A JSON row back means verified. `bq` lives in the same SDK as `gcloud`; a missing `bq` with
+A JSON row back means verified; its `user` is the signed-in account, keep it for step 5. `bq` lives in the same SDK as `gcloud`; a missing `bq` with
 a present `gcloud` means the component is not installed: `gcloud components install bq`.
 
 ## Sign in from this session
@@ -57,10 +57,10 @@ Re-run the check.
 A server in your tool list whose name contains `bigquery`. Ask, then run once:
 
 ```sql
-select 1 as ok
+select session_user() as user
 ```
 
-Google's remote server is `https://bigquery.googleapis.com/mcp`, signed in with the user's
+Keep the user for step 5. Google's remote server is `https://bigquery.googleapis.com/mcp`, signed in with the user's
 Google account through the agent (Claude Code `/mcp`; Codex `codex mcp login <name>`; Cursor
 Settings, MCP). Listed but not callable means that sign-in is missing.
 

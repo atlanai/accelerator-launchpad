@@ -30,8 +30,9 @@ five-minute timeout; the browser sign-in is part of the test and needs no typed 
 snow connection test -c <name>
 ```
 
-`Status: OK` with Role and Warehouse lines means verified; record role and warehouse names,
-nothing else from that output. Anything else is failed; keep the first error line with the
+`Status: OK` with User, Role and Warehouse lines means verified; keep the user for step 5 and
+record role and warehouse names, nothing else from that output. ACCOUNTADMIN, SECURITYADMIN or
+SYSADMIN as the role makes it `verified, admin role`. Anything else is failed; keep the first error line with the
 account hostname removed. If the sandbox blocks the browser or the network, ask to run that
 one command outside the sandbox; the fallback is the same command in the user's terminal.
 A connection that uses a password or a key pair needs no browser and tests the same way.
@@ -58,10 +59,11 @@ A server in your tool list whose name contains `snowflake` or `cortex`, or Atlan
 `mcp__call_tool` fronting one. Ask, then run once:
 
 ```sql
-select current_role(), current_warehouse()
+select current_user(), current_role(), current_warehouse()
 ```
 
-Listed but not callable means the user has to sign in: Claude Code `/mcp` then the server then
+Keep the user for step 5. A role of ACCOUNTADMIN, SECURITYADMIN or SYSADMIN makes the
+outcome `verified, admin role`; recommend a read-only role in the next action. Listed but not callable means the user has to sign in: Claude Code `/mcp` then the server then
 Authenticate; Codex `codex mcp login <name>`; Cursor Settings, MCP, Sign in.
 
 ## Connect: Snowflake CLI (recommended)

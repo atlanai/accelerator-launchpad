@@ -14,28 +14,31 @@ FALLBACK_EMAIL: anirudh.agarwal@atlan.com
 
 ## Privacy check before writing
 
-The report may contain: tool names and versions, MCP server names, connection and profile
-names, role and warehouse names, check outcomes with error text, BI tool names and file
+The report may contain: tool names and versions, the names of warehouse, BI and Atlan MCP
+servers and a count of the others, connection and profile names after the identifier check in
+SKILL.md (anything that looks like an account id becomes `snowflake connection 1`), the
+signed-in user, role and warehouse names, check outcomes with error text, BI tool names and file
 counts, the participant's name and work email, and their BI answers. It must not contain: hostnames, account identifiers,
 workspace or account ids, tokens, file names, SQL results beyond "a row came back". Read it
 once before showing it.
 
 ## Template
 
-Write exactly this structure to `atlan-readiness-report.md`. Keep every heading; write `none`
+Write exactly this structure to `~/atlan-readiness-report.md` (the home folder, never a
+repository). Keep every heading; write `none`
 or `unanswered` rather than deleting a line.
 
 ```markdown
 # Atlan accelerator · readiness report
 
-Generated <YYYY-MM-DD HH:MM UTC> · skill 0.5.0 · written by <agent and version>
+Generated <YYYY-MM-DD HH:MM UTC> · skill <version from SKILL.md metadata> · written by <agent and version>
 
 ## Summary
 
 | Area | Status | Detail |
 |---|---|---|
 | Coding agent | <ok | none> | <this agent; others installed> |
-| Warehouse | <verified | failed | present | none> | <kind via route; what the check did> |
+| Warehouse | <verified | verified, admin role | failed | present | none> | <kind via route; what the check did> |
 | BI | <found | none> | <tools, file counts> |
 
 Verdict: <READY | NEEDS ATTENTION>
@@ -51,12 +54,12 @@ Next action: <one sentence>
 
 - Running in: <agent, version>
 - Also installed: <list or none>
-- MCP servers by agent: <agent: names (class), …>
+- MCP servers by agent: <agent: warehouse, BI and Atlan server names (class), and N others>
 
 ## Warehouse
 
 - Routes found: <list, e.g. "Snowflake via CLI (connection work, default)", "BigQuery via gcloud (project set)", "Databricks via MCP in Cursor (server databricks-sql)">
-- Check run: <command> → <ok with role/warehouse, or failed: first error line>
+- Check run: <command> → <ok as <user>, role <role>, warehouse <warehouse>, or failed: first error line>
 - Signed in from this session: <yes, which command / not needed / refused / blocked by sandbox>
 - Other access described by the participant: <…>
 - Help given in step 3: <what was done and where it stopped, or none>
@@ -92,14 +95,14 @@ the report file goes in as the paragraph field, URL-encoded by curl:
 curl -sS -o /dev/null -w "%{http_code}\n" -X POST "<FORM_URL>" \
   --data-urlencode "<FIELD_NAME>=<the participant's name>" \
   --data-urlencode "<FIELD_EMAIL>=<the participant's work email>" \
-  --data-urlencode "<FIELD_REPORT>@atlan-readiness-report.md"
+  --data-urlencode "<FIELD_REPORT>@$HOME/atlan-readiness-report.md"
 ```
 
 Substitute the five values from the block above. `200` means received; say so. On Windows
 without curl in the shell, PowerShell works too:
 
 ```powershell
-$body = @{ "<FIELD_NAME>" = "<name>"; "<FIELD_EMAIL>" = "<email>"; "<FIELD_REPORT>" = (Get-Content atlan-readiness-report.md -Raw) }
+$body = @{ "<FIELD_NAME>" = "<name>"; "<FIELD_EMAIL>" = "<email>"; "<FIELD_REPORT>" = (Get-Content "$HOME\atlan-readiness-report.md" -Raw) }
 (Invoke-WebRequest -Method Post -Uri "<FORM_URL>" -Body $body).StatusCode
 ```
 

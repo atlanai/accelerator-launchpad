@@ -57,7 +57,7 @@ against your warehouse, and it asks again before it sends the report.
 | 3. Connect | If no route works, walks you through installing the CLI and signing in, then checks again. Only commands that ask for a password or token go to your own terminal |
 | 4. BI | Finds BI apps and MCP servers, counts BI files, and asks which dashboard you would start from |
 | 5. Who you are | Reads your name and work email from the machine (your warehouse sign-in, git, the OS account) and confirms them in one line |
-| 6. Report | Writes `atlan-readiness-report.md`, shows the summary, and with your yes posts it to Atlan's collection form |
+| 6. Report | Writes `atlan-readiness-report.md` in your home folder, shows the summary, and with your yes posts it to Atlan's collection form |
 
 The accelerator needs one way for your agent to run SQL as you. A warehouse CLI or an MCP
 server, either works. If neither is set up yet, step 3 is the point: the agent gets you
@@ -65,11 +65,14 @@ connected before kickoff, or records exactly where it got stuck so we can help.
 
 ## What leaves your machine
 
-Only the report, and only when you say yes. It contains tool names and versions, MCP server
-names, connection and profile names, the outcome of each check, BI tool names and file
-counts, and your answers. It never contains credentials, tokens, hostnames, account
-identifiers, file names or data rows. The skill reads configuration files only to list names,
-and every command it runs on its own is read-only. Read the report before you send it.
+Only the report, and only when you say yes. It contains tool names and versions, the names of
+your warehouse, BI and Atlan MCP servers and a count of the others, connection and profile
+names, the signed-in user and role, the outcome of each check, BI tool names and file counts,
+your name and work email, and your BI answers. A connection or server name that looks like an
+account identifier is replaced with a neutral label before it is written. It never contains
+credentials, tokens, hostnames, account identifiers, file names or data rows. The skill reads
+configuration files only to list names, and every command it runs on its own is read-only.
+Read the report before you send it.
 
 ## Requirements
 

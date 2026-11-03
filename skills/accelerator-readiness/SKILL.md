@@ -3,7 +3,7 @@ name: accelerator-readiness
 description: Audits a laptop for the Atlan talk-to-data accelerator from inside the user's coding agent - which coding agents are installed, whether a warehouse (Snowflake, Databricks, BigQuery, Redshift, Postgres and others) is reachable by CLI or MCP server, which BI tools are around - signs the user in or helps them connect when a route is missing, then writes and sends a readiness report. Use when the user asks to run the accelerator readiness check, audit or check their environment for Atlan, get ready for the accelerator, or check their warehouse connection for it.
 compatibility: Any coding agent with a shell (Claude Code, Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode). Uses whichever warehouse CLI is present; none is required.
 metadata:
-  version: "0.5.1"
+  version: "0.6.0"
   author: Atlan
 ---
 
@@ -34,6 +34,12 @@ ten minutes. No Atlan account is needed.
   print the files that hold them (`~/.claude.json`, `~/.codex/config.toml`, `~/.cursor/mcp.json`,
   `~/.snowflake/*.toml`, `~/.databrickscfg`, `~/.aws/*`, `~/.config/gcloud/*`, `.env`), and never
   echo tokens, keys, hostnames or account identifiers, in the chat or in the report.
+- **A name can be an identifier.** People name connections and servers after the account
+  (`zib00671`, `Snowflake - zib00671`, `adb-1234567890`). Before any name goes in the chat or
+  the report, check it: a token that mixes letters and digits, anything with a dot, a slash,
+  an `@` or a domain, and any account, workspace or organisation id counts as an identifier.
+  Replace such a name with a neutral label that keeps the kind and the order: `snowflake
+  connection 1`, `databricks server 2`. Plain words (`work`, `prod-reader`, `genie`) stay.
 - **Collect everything.** A failed check is a finding. Do not stop at the first failure.
 - **Every yes is a button, not a sentence.** Whenever the user must choose (run a check, sign
   in, install something, confirm their identity, send the report), ask through your host's
@@ -74,7 +80,8 @@ Readiness check
    that reference (`claude mcp list`, `codex mcp list`, or a one-liner that prints a file's
    top-level keys). Keep names and connection status only; drop URLs, commands and paths.
    Classify each as Snowflake, Databricks, BigQuery, Redshift, other warehouse, BI, Atlan or
-   other from its name.
+   other from its name. Only warehouse, BI and Atlan servers are named in the report; the rest
+   become a count ("and 41 others"), because a customer's full tool inventory is theirs.
 4. Note the OS and `python3 --version`.
 
 If no coding agent is installed at all, the user is probably in a browser app. Tell them the
@@ -106,6 +113,12 @@ Outcome is one of: **verified** (a check passed), **failed** (a route exists, th
 not pass even after a sign-in; keep the first line of the error with any hostname or token
 removed), **present** (route found, but the check did not run: the user declined, nobody was
 there to ask, or your sandbox blocked the command; say which), **none**.
+
+Every check statement returns the signed-in user; keep it for step 5. When the check shows an
+admin role or user (Snowflake ACCOUNTADMIN, SECURITYADMIN or SYSADMIN; a Databricks workspace
+or account admin; a Postgres superuser; an AWS role named for administrator access), the
+outcome is **verified, admin role**, and the report's next action says to use a read-only
+role for the accelerator.
 
 Status line: `2/6 warehouse · <kind> via <mcp|cli> · <verified|failed|present|none> · <signed in here | sign-in not needed | sign-in refused>`
 
@@ -145,9 +158,11 @@ Status line: `4/6 bi · <tools found or none> · dashboard: <answer or unanswere
 Infer the name and work email from what the machine already knows; do not ask a
 questionnaire. Take the first source that answers, in this order:
 
-1. An identity you already saw in step 2: `databricks current-user me` (`userName` and
-   `displayName`), the active account from `gcloud auth list`, the user in
-   `snow connection test`, the ARN from `aws sts get-caller-identity` when it carries an email.
+1. The identity the step 2 check returned: the `current_user()` column of the statement you
+   ran through an MCP server, `databricks current-user me` (`userName` and `displayName`),
+   the active account from `gcloud auth list`, the user in `snow connection test`, the ARN
+   from `aws sts get-caller-identity` when it carries an email. A warehouse user that is not
+   an email still beats git config: ask only for the email then.
 2. `git config --global user.name` and `git config --global user.email`.
 3. The OS account: macOS `id -F` for the full name; Windows `whoami /upn` for the email.
 4. `gh api user --jq .name` when GitHub's CLI is signed in.
@@ -161,7 +176,9 @@ Status line: `5/6 participant · <name> · <email> · from <source>`
 
 ## Step 6: report, show, send
 
-1. Write `atlan-readiness-report.md` in the current folder using the template in
+1. Write `atlan-readiness-report.md` in the user's home folder (`~/atlan-readiness-report.md`,
+   `%USERPROFILE%\atlan-readiness-report.md` on Windows), never in the current folder, which
+   may be a repository, using the template in
    [references/report.md](references/report.md), filled from what you recorded. No hostnames,
    tokens, account identifiers or data rows; profile and server names are fine.
 2. Show the summary table and the single most useful next action.
@@ -177,7 +194,9 @@ Status line: `6/6 report · <READY|NEEDS ATTENTION> · atlan-readiness-report.md
 
 ## Verdict
 
-- **READY**: a coding agent is installed and the warehouse outcome is verified.
+- **READY**: a coding agent is installed, the warehouse outcome is verified (an admin role is
+  still READY, with the read-only recommendation), and the user named their BI tool and a
+  starting dashboard, because week one starts from that dashboard.
 - **NEEDS ATTENTION**: anything else. The report's next action says what to fix.
 
 ## References

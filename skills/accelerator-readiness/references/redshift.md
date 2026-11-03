@@ -26,13 +26,13 @@ account number. An expired SSO session fails here: go to Sign in.
 With a yes, one read-only statement. Serverless workgroup:
 
 ```bash
-aws redshift-data execute-statement --profile <profile> --workgroup-name <workgroup> --database <db> --sql "select 1 as ok" --query Id --output text
+aws redshift-data execute-statement --profile <profile> --workgroup-name <workgroup> --database <db> --sql "select current_user" --query Id --output text
 ```
 
 Provisioned cluster, temporary credentials for the user's database identity:
 
 ```bash
-aws redshift-data execute-statement --profile <profile> --cluster-identifier <cluster> --database <db> --sql "select 1 as ok" --query Id --output text
+aws redshift-data execute-statement --profile <profile> --cluster-identifier <cluster> --database <db> --sql "select current_user" --query Id --output text
 ```
 
 Then, with the returned id:
@@ -42,7 +42,7 @@ aws redshift-data describe-statement --profile <profile> --id <id> --query Statu
 aws redshift-data get-statement-result --profile <profile> --id <id> --query 'Records[0]' --output text
 ```
 
-`FINISHED` with a row means verified. Ask the user for the workgroup or cluster name and the
+`FINISHED` with a row means verified; the row is the database user, keep it for step 5. An ARN whose role name contains `Admin` makes it `verified, admin role`. Ask the user for the workgroup or cluster name and the
 database; these are not secrets. If they only know the host from a SQL client, the workgroup
 or cluster is the first label of that host.
 
@@ -66,10 +66,10 @@ because it asks for the secret key.
 A server in your tool list whose name contains `redshift`. Ask, then run once:
 
 ```sql
-select 1 as ok
+select current_user
 ```
 
-AWS's own server is `awslabs.redshift-mcp-server`, started with `uvx` and the user's AWS
+Keep the user for step 5. AWS's own server is `awslabs.redshift-mcp-server`, started with `uvx` and the user's AWS
 profile; it runs as the database user tied to their IAM identity. Listed but not callable
 usually means the AWS session behind it expired: sign in as above and restart the agent.
 
