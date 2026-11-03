@@ -76,7 +76,7 @@ connected before kickoff, or records exactly where it got stuck so we can help.
 Only the report, and only when you say yes. It contains tool names and versions, the names of
 your warehouse, BI and Atlan MCP servers and a count of the others, connection and profile
 names, the signed-in user and role, the outcome of each check, BI tool names and file counts,
-your name and work email, and your BI answers. A connection or server name that looks like an
+your name and work email, your use case, your BI answers, and any table names you give. A connection or server name that looks like an
 account identifier is replaced with a neutral label before it is written. It never contains
 credentials, tokens, hostnames, account identifiers, file names or data rows. The skill reads
 configuration files only to list names, and every command it runs on its own is read-only.
