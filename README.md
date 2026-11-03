@@ -1,7 +1,7 @@
-# Atlan TTD Accelerator · starter kit
+# Atlan Analytics Agent Accelerator · starter kit
 
 A skill for your coding agent that checks whether your laptop is ready for the
-[Atlan](https://atlan.com) talk-to-data accelerator, signs you in or helps you connect where
+[Atlan](https://atlan.com) Analytics Agent accelerator, signs you in or helps you connect where
 something is missing, and writes a short readiness report to send to us.
 
 It follows the [Agent Skills](https://agentskills.io) format, so it works in Claude Code,
