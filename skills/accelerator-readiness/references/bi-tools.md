@@ -19,8 +19,12 @@ exports, uploads, and files are not needed; do not ask for them or whether they 
    ```powershell
    Get-ChildItem "$env:ProgramFiles", "${env:ProgramFiles(x86)}", "$env:LOCALAPPDATA\Programs" -Name | Select-String -Pattern "tableau|power bi|qlik|dbeaver"
    ```
-
-Do not scan local folders for BI files.
+3. **Local BI files**, counts only, shallow, in the three usual folders:
+   ```bash
+   find ~/Desktop ~/Documents ~/Downloads -maxdepth 3 -type f \( -iname '*.twb' -o -iname '*.twbx' -o -iname '*.hyper' -o -iname '*.pbix' -o -iname '*.pbit' -o -iname '*.pbip' -o -iname '*.lkml' -o -iname '*.qvf' \) 2>/dev/null | sed 's/.*\.//' | sort | uniq -c
+   ```
+   Report the counts per extension. Never list file names; they can carry customer or
+   project names. Do not open, upload, or ask the user to share these files.
 
 ## Ask
 
@@ -33,7 +37,7 @@ A "not sure" is a fine answer; Atlan picks one with them in the one-on-one.
 
 ## Record
 
-- Tools found (apps, MCP servers)
+- Tools found (apps, MCP servers), file counts by type
 - The BI tool they named and the starting dashboard
 - BI access: not checked. Tool discovery and participant answers do not verify
   authentication or dashboard access; do not mark BI as verified or passed.

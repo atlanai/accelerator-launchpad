@@ -145,8 +145,9 @@ Week one starts from one dashboard the user already has, so find what is here an
 
 1. From step 1, name any BI MCP servers (Tableau, Power BI, Looker, Metabase, Sigma,
    ThoughtSpot).
-2. Look for desktop BI apps using the command for the user's OS in
-   [references/bi-tools.md](references/bi-tools.md). Tool names only; do not scan for BI files.
+2. Look for desktop BI apps and a shallow count of local BI files using
+   [references/bi-tools.md](references/bi-tools.md). Counts and tool names only, never file names
+   or contents.
 3. Ask two questions: "Which BI tool does your team use?" and "Which one dashboard would you
    start the accelerator from?" Ask one at a time. Do not ask for screenshots, exports,
    uploads, or files, or whether the user can provide them.
@@ -213,5 +214,5 @@ Status line: `6/6 report · <READY|NEEDS ATTENTION> · atlan-readiness-report.md
 | [references/bigquery.md](references/bigquery.md) | gcloud, bq and the BigQuery MCP server: check, sign in, connect, errors |
 | [references/redshift.md](references/redshift.md) | AWS CLI, the Redshift Data API and the Redshift MCP server: check, sign in, connect, errors |
 | [references/other-warehouses.md](references/other-warehouses.md) | Postgres, ClickHouse, Fabric and SQL Server, Trino, DuckDB: check and connect in brief |
-| [references/bi-tools.md](references/bi-tools.md) | BI apps, MCP servers, the two questions, access-check limitation |
+| [references/bi-tools.md](references/bi-tools.md) | BI apps, local file counts, MCP servers, the two questions, access-check limitation |
 | [references/report.md](references/report.md) | Report template, submit URL, email fallback, privacy check |

@@ -17,8 +17,8 @@ FALLBACK_EMAIL: anirudh.agarwal@atlan.com
 The report may contain: tool names and versions, the names of warehouse, BI and Atlan MCP
 servers and a count of the others, connection and profile names after the identifier check in
 SKILL.md (anything that looks like an account id becomes `snowflake connection 1`), the
-signed-in user, role and warehouse names, check outcomes with error text, BI tool names,
-the participant's name and work email, and their BI answers. It must not contain: hostnames, account identifiers,
+signed-in user, role and warehouse names, check outcomes with error text, BI tool names and file
+counts, the participant's name and work email, and their BI answers. It must not contain: hostnames, account identifiers,
 workspace or account ids, tokens, file names, SQL results beyond "a row came back". Read it
 once before showing it.
 
@@ -39,7 +39,7 @@ Generated <YYYY-MM-DD HH:MM UTC> · skill <version from SKILL.md metadata> · wr
 |---|---|---|
 | Coding agent | <ok | none> | <this agent; others installed> |
 | Warehouse | <verified | verified, admin role | failed | present | none> | <kind via route; what the check did> |
-| BI | access not checked | <tools found or none; participant's tool and dashboard answers> |
+| BI | access not checked | <tools found or none; file counts; participant's tool and dashboard answers> |
 
 Verdict: <READY | NEEDS ATTENTION>
 Next action: <one sentence>
@@ -66,7 +66,7 @@ Next action: <one sentence>
 
 ## BI
 
-- Found: <apps, MCP servers>
+- Found: <apps, MCP servers, file counts>
 - Team's BI tool: <…>
 - Starting dashboard: <…>
 - BI access: not checked
