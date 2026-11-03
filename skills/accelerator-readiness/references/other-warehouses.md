@@ -54,7 +54,7 @@ or runs in their terminal.
 - A local DuckDB file needs no sign-in: `duckdb <file> "select 1"`. MotherDuck signs in with a
   token in `motherduck_token`, set by the user in their shell, then `duckdb md: "select 1"`.
 - Useful as the week-one route when the team's warehouse is not reachable yet and they have
-  a BI export or a CSV: not a blocker, say so in the report.
+  a local dataset: not a blocker, say so in the report. Do not ask them to share or upload it.
 
 ## Anything else
 

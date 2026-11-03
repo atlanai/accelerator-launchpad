@@ -145,13 +145,16 @@ Week one starts from one dashboard the user already has, so find what is here an
 
 1. From step 1, name any BI MCP servers (Tableau, Power BI, Looker, Metabase, Sigma,
    ThoughtSpot).
-2. Look for desktop BI apps and a shallow count of BI files with the two commands in
-   [references/bi-tools.md](references/bi-tools.md). Counts and tool names only, never file names.
+2. Look for desktop BI apps using the command for the user's OS in
+   [references/bi-tools.md](references/bi-tools.md). Tool names only; do not scan for BI files.
 3. Ask two questions: "Which BI tool does your team use?" and "Which one dashboard would you
-   start the accelerator from, and can you export it (Power BI .pbix, Tableau .twbx) or share
-   its screenshots?"
+   start the accelerator from?" Ask one at a time. Do not ask for screenshots, exports,
+   uploads, or files, or whether the user can provide them.
+4. Record the answers as participant-provided context. Finding an app or MCP server, or
+   selecting a tool or dashboard, does not verify authentication or dashboard access. This
+   step does not check BI access; say "not checked" in the report, never "verified" or "passed".
 
-Status line: `4/6 bi · <tools found or none> · dashboard: <answer or unanswered>`
+Status line: `4/6 bi · <tools found or none> · dashboard: <answer or unanswered> · access: not checked`
 
 ## Step 5: who the participant is
 
@@ -196,7 +199,8 @@ Status line: `6/6 report · <READY|NEEDS ATTENTION> · atlan-readiness-report.md
 
 - **READY**: a coding agent is installed, the warehouse outcome is verified (an admin role is
   still READY, with the read-only recommendation), and the user named their BI tool and a
-  starting dashboard, because week one starts from that dashboard.
+  starting dashboard, because week one starts from that dashboard. This verdict does not
+  certify BI access; the report must retain "BI access: not checked" even when READY.
 - **NEEDS ATTENTION**: anything else. The report's next action says what to fix.
 
 ## References
@@ -209,5 +213,5 @@ Status line: `6/6 report · <READY|NEEDS ATTENTION> · atlan-readiness-report.md
 | [references/bigquery.md](references/bigquery.md) | gcloud, bq and the BigQuery MCP server: check, sign in, connect, errors |
 | [references/redshift.md](references/redshift.md) | AWS CLI, the Redshift Data API and the Redshift MCP server: check, sign in, connect, errors |
 | [references/other-warehouses.md](references/other-warehouses.md) | Postgres, ClickHouse, Fabric and SQL Server, Trino, DuckDB: check and connect in brief |
-| [references/bi-tools.md](references/bi-tools.md) | BI apps, files, MCP servers, the two questions |
+| [references/bi-tools.md](references/bi-tools.md) | BI apps, MCP servers, the two questions, access-check limitation |
 | [references/report.md](references/report.md) | Report template, submit URL, email fallback, privacy check |
