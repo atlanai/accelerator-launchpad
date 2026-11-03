@@ -4,6 +4,12 @@ A skill for your coding agent that checks whether your laptop is ready for the
 [Atlan](https://atlan.com) talk-to-data accelerator, signs you in or helps you connect where
 something is missing, and writes a short readiness report to send to us.
 
+During the accelerator we build an agent together, with you, for one use case of your own:
+a question your team asks of its data again and again. The check starts by asking what that
+use case is. Everything after it (your coding agent, your warehouse access, the dashboard you
+would start from) is so we can come to kickoff ready to build that agent with you, not to
+spend the first session on setup.
+
 It follows the [Agent Skills](https://agentskills.io) format, so it works in Claude Code,
 Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode and other agents that read
 `SKILL.md` files. About ten minutes. No Atlan account needed.
@@ -44,14 +50,16 @@ Open your coding agent and say:
 Run the Atlan accelerator readiness check.
 ```
 
-The agent loads the skill and walks you through six short steps with only a handful of questions,
-each one a choice you click rather than a sentence to type. It asks before it runs anything
+The agent loads the skill, asks about your use case, and walks you through six short steps
+with only a handful of questions. Apart from the use case, each one is a choice you click
+rather than a sentence to type. It asks before it runs anything
 against your warehouse, and it asks again before it sends the report.
 
 ## What the agent does
 
 | Step | What happens |
 |---|---|
+| Use case | Asks what you want to build an agent for during the accelerator, in a sentence or two |
 | 1. Coding agent | Names the agent you are in, lists the others installed, and the MCP server names each has configured |
 | 2. Warehouse route | Looks for your warehouse in its own tools and in the CLIs on your machine: Snowflake, Databricks, BigQuery, Redshift, Postgres and others. With your yes, runs one read-only statement to prove the connection, and if a sign-in has expired, opens the browser sign-in for you from the same session |
 | 3. Connect | If no route works, walks you through installing the CLI and signing in, then checks again. Only commands that ask for a password or token go to your own terminal |

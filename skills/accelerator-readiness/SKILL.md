@@ -9,10 +9,11 @@ metadata:
 
 # Accelerator readiness check
 
-Find out whether this laptop is ready for the accelerator: a coding agent, one way to run
-SQL on the team's warehouse as this user, and a BI dashboard to start from. When something is
-missing, fix it now with the user. Finish with a short report the user sends to Atlan. About
-ten minutes. No Atlan account is needed.
+During the accelerator, Atlan and the user build an agent together for one use case of
+theirs. Start by asking what that use case is. Then find out whether this laptop is ready to
+build it: a coding agent, one way to run SQL on the team's warehouse as this user, and a BI
+dashboard to start from. When something is missing, fix it now with the user. Finish with a
+short report the user sends to Atlan. About ten minutes. No Atlan account is needed.
 
 ## Rules
 
@@ -60,6 +61,7 @@ Copy this checklist into your first reply and tick it as you go:
 
 ```
 Readiness check
+- [ ] Use case: what we will build an agent for
 - [ ] 1 Coding agent: this one, and what else is installed
 - [ ] 2 Warehouse route: MCP tools, CLIs, one read-only check (sign in again if needed)
 - [ ] 3 No route: help the user connect, then re-check
@@ -67,6 +69,25 @@ Readiness check
 - [ ] 5 Who the participant is (inferred, confirmed in one line)
 - [ ] 6 Report written, shown, sent
 ```
+
+## Start: the use case
+
+Before any check, tell the user in two sentences why this exists: during the accelerator,
+Atlan builds an agent together with them for a use case of their own, and every check that
+follows (coding agent, warehouse access, starting dashboard) is so they arrive at kickoff
+ready to build it. Then ask one open question in chat, since the answer is a sentence and not
+a choice:
+
+"What would you like to build an agent for during the accelerator? A sentence or two is
+enough: the questions your team asks of its data again and again, who asks them, and where
+the answer lives today. For example: 'Sales leads ask weekly which accounts are at risk of
+churn; today an analyst pulls it from the Customer Health dashboard.'"
+
+"Not sure yet" is a fine answer; Atlan shapes the use case with them before kickoff. Keep the
+answer in their words. Refer back to it later where it helps, for example when asking which
+dashboard they would start from.
+
+Status line: `use case · <their use case in under ten words, or not sure yet>`
 
 ## Step 1: coding agent
 

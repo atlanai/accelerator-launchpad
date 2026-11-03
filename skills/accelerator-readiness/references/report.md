@@ -18,7 +18,7 @@ The report may contain: tool names and versions, the names of warehouse, BI and 
 servers and a count of the others, connection and profile names after the identifier check in
 SKILL.md (anything that looks like an account id becomes `snowflake connection 1`), the
 signed-in user, role and warehouse names, check outcomes with error text, BI tool names and file
-counts, the participant's name and work email, and their BI answers. It must not contain: hostnames, account identifiers,
+counts, the participant's name and work email, their use case, and their BI answers. It must not contain: hostnames, account identifiers,
 workspace or account ids, tokens, file names, SQL results beyond "a row came back". Read it
 once before showing it.
 
@@ -49,6 +49,10 @@ Next action: <one sentence>
 - Name: <…>
 - Work email: <…>
 - Identified from: <databricks sign-in | gcloud account | git config | OS account | asked>
+
+## Use case
+
+<what the participant wants to build an agent for, in their words, or not sure yet>
 
 ## Coding agents
 
