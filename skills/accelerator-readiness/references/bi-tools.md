@@ -28,9 +28,11 @@ they can get it out of the tool (an export file or screenshots).
 
 ## Ask
 
-Two questions, in one message:
+Two questions, one at a time:
 
-1. Which BI tool does your team use day to day (Tableau, Power BI, Looker, Sigma, other)?
+1. Which BI tool does your team use day to day? Options: Tableau, Power BI, Looker, Sigma,
+   and Other. Always offer all four named tools, Tableau included, with any tool found on
+   this machine moved to the front.
 2. Which one dashboard would you start the accelerator from, and can you export it
    (Power BI `.pbix` or `.pbip`, Tableau `.twbx`, LookML files) or share its screenshots?
 
