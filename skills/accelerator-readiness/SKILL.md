@@ -3,7 +3,7 @@ name: accelerator-readiness
 description: Audits a laptop for the Atlan Analytics Agent Accelerator from inside the user's coding agent - which coding agents are installed, whether a warehouse (Snowflake, Databricks, BigQuery, Redshift, Postgres and others) is reachable by CLI or MCP server, which BI tools are around - signs the user in or helps them connect when a route is missing, then writes and sends a readiness report. Use when the user asks to run the accelerator readiness check, audit or check their environment for Atlan, get ready for the accelerator, or check their warehouse connection for it.
 compatibility: Any coding agent with a shell (Claude Code, Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode). Uses whichever warehouse CLI is present; none is required.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
   author: Atlan
 ---
 
@@ -56,6 +56,11 @@ short report the user sends to Atlan. About ten minutes. No Atlan account is nee
   narration of these instructions.
 - **No human available** (a scripted or headless run): skip questions, treat every consent as
   no, write `unanswered` in the report, and still produce it.
+- **The Builder.** A small ASCII builder opens the check, may comment on up to three real
+  events, and closes it with a site pass (READY) or a site inspection (NEEDS ATTENTION). The
+  frames, the allowed quips and their rules are in
+  [references/builder.md](references/builder.md). Copy frames exactly, inside a code block;
+  never put the Builder in the report.
 
 Copy this checklist into your first reply and tick it as you go:
 
@@ -72,7 +77,8 @@ Readiness check
 
 ## Start: the use case
 
-Before any check, tell the user in two sentences why this exists: during the accelerator,
+Open with the Builder's start frame from [references/builder.md](references/builder.md).
+Then, before any check, tell the user in two sentences why this exists: during the accelerator,
 Atlan builds an agent together with them for a use case of their own, and every check that
 follows (coding agent, warehouse access, starting dashboard) is so they arrive at kickoff
 ready to build it. Then ask one open question in chat, since the answer is a sentence and not
@@ -222,8 +228,9 @@ Status line: `5/6 participant · <name> · <email> · from <source>`
 
 Status line: `6/6 report · <READY|NEEDS ATTENTION> · atlan-readiness-report.md · <sent|to email>`
 
-After the status line, end the check with this message, word for word, whatever they chose
-about sending:
+After the status line, show the Builder's end frame for the verdict (the site pass for READY,
+the site inspection for NEEDS ATTENTION) from [references/builder.md](references/builder.md).
+Then end the check with this message, word for word, whatever they chose about sending:
 
 > Thank you for your responses. The Atlan team will be in touch with what to expect next.
 
@@ -247,3 +254,4 @@ about sending:
 | [references/other-warehouses.md](references/other-warehouses.md) | Postgres, ClickHouse, Fabric and SQL Server, Trino, DuckDB: check and connect in brief |
 | [references/bi-tools.md](references/bi-tools.md) | BI apps, local file counts, MCP servers, the two questions, access-check limitation |
 | [references/report.md](references/report.md) | Report template, submit URL, email fallback, privacy check |
+| [references/builder.md](references/builder.md) | The Builder: start frame, allowed quips, site pass and site inspection end frames |
