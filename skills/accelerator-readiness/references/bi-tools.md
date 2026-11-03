@@ -30,7 +30,9 @@ exports, uploads, and files are not needed; do not ask for them or whether they 
 
 Two questions, one at a time:
 
-1. Which BI tool does your team use day to day (Tableau, Power BI, Looker, Sigma, other)?
+1. Which BI tool does your team use day to day? Options: Tableau, Power BI, Looker, Sigma,
+   and Other. Always offer all four named tools, Tableau included, with any tool found on
+   this machine moved to the front.
 2. Which one dashboard would you start the accelerator from?
 
 A "not sure" is a fine answer; Atlan picks one with them in the one-on-one.

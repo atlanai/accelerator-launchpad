@@ -3,7 +3,7 @@ name: accelerator-readiness
 description: Audits a laptop for the Atlan talk-to-data accelerator from inside the user's coding agent - which coding agents are installed, whether a warehouse (Snowflake, Databricks, BigQuery, Redshift, Postgres and others) is reachable by CLI or MCP server, which BI tools are around - signs the user in or helps them connect when a route is missing, then writes and sends a readiness report. Use when the user asks to run the accelerator readiness check, audit or check their environment for Atlan, get ready for the accelerator, or check their warehouse connection for it.
 compatibility: Any coding agent with a shell (Claude Code, Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot CLI, OpenCode). Uses whichever warehouse CLI is present; none is required.
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
   author: Atlan
 ---
 
@@ -45,8 +45,8 @@ short report the user sends to Atlan. About ten minutes. No Atlan account is nee
 - **Every yes is a button, not a sentence.** Whenever the user must choose (run a check, sign
   in, install something, confirm their identity, send the report), ask through your host's
   question tool so they see options to click, never a question buried in prose:
-  - Claude Code: the `AskUserQuestion` tool, one question, two or three options, the
-    recommended one first and labelled "(Recommended)".
+  - Claude Code: the `AskUserQuestion` tool, one question, two or three options (four for
+    the BI tool question in step 4), the recommended one first and labelled "(Recommended)".
   - Codex: `request_user_input` when your collaboration mode allows it; otherwise the command
     approval prompt is the choice: present the exact command with a one-line description of
     what it does, and let the user approve or decline it there.
@@ -169,9 +169,11 @@ Week one starts from one dashboard the user already has, so find what is here an
 2. Look for desktop BI apps and a shallow count of local BI files using
    [references/bi-tools.md](references/bi-tools.md). Counts and tool names only, never file names
    or contents.
-3. Ask two questions: "Which BI tool does your team use?" and "Which one dashboard would you
-   start the accelerator from?" Ask one at a time. Do not ask for screenshots, exports,
-   uploads, or files, or whether the user can provide them.
+3. Ask two questions, one at a time. First "Which BI tool does your team use?" with exactly
+   these options: Tableau, Power BI, Looker, Sigma, with any tool found above moved to the
+   front. Claude Code adds "Other" itself; in other agents add "Other" as the last option.
+   Then "Which one dashboard would you start the accelerator from?" Do not ask for
+   screenshots, exports, uploads, or files, or whether the user can provide them.
 4. Then ask whether they know the tables behind it: "Do you know which tables in your
    warehouse hold the data for that dashboard, or would answer the questions in your use
    case?" Options: "Yes, I can name them", "Roughly", "Not sure". On yes or roughly, take the
