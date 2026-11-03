@@ -127,6 +127,11 @@ skills/accelerator-readiness/
   references/report.md          the report template and where it goes
 ```
 
+## Contact us
+
+Questions about the accelerator or the readiness check: email
+[ailabs@atlan.com](mailto:ailabs@atlan.com).
+
 ## License
 
 Apache 2.0. See [LICENSE](LICENSE).
