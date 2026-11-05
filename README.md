@@ -31,6 +31,12 @@ of questions. Apart from the use case, each one is a choice you click rather tha
 to type. It asks before it runs anything against your warehouse, and it asks again before it
 sends the report.
 
+## Practise first
+
+No warehouse connected yet? The [builder's yard](yard/) is a small made-up firm with five tables
+and a Power BI dashboard, for trying the week-one steps on your laptop. Paste:
+`Set up the builder's yard and show me its dashboard`.
+
 ## What the agent does
 
 | Step | What happens |
@@ -102,6 +108,8 @@ skills/accelerator-readiness/
   references/bi-tools.md        what to look for and the two questions
   references/report.md          the report template and where it goes
   references/builder.md         the Builder: start frame, quips, site pass and inspection
+skills/builders-yard/SKILL.md   set up the practice yard and show its dashboard
+yard/                           the builder's yard: data, dashboard, query history
 ```
 
 ## Contact us

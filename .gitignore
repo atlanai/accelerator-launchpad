@@ -99,3 +99,9 @@ logs/
 # Participants' own reports and local notes never ship.
 atlan-readiness-report.md
 .dev/
+
+# The builder's yard is built locally; eval answers and agent files from a run never ship.
+yard/fixit.duckdb
+.atlan-analytics/
+.atlan-metrics/
+.claude/agents/
