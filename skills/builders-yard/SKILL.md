@@ -11,11 +11,11 @@ Everything lives in `yard/` (read `yard/README.md` first). Nothing leaves the la
 1. **Build the yard.** If `yard/fixit.duckdb` is missing, run `python yard/load.py`. If `duckdb`
    is not importable, ask once, then use `uv run --with duckdb python yard/load.py` (or
    `pip install duckdb`). Show the row counts.
-2. **Show the dashboard.** Read `yard/powerbi/definition/report.json` and `model.tmdl`. List the
-   four tiles, each with its measure and value, computed with `python yard/q.py` from the
-   measure's definition and the table's SQL in `yard/powerbi/rowsets.json`. One line per tile.
-3. **Hand over to the build.** In one line, say the next step: convert the Power BI report in
-   `yard/powerbi` to an agent with the Atlan analytics plugin, as `yard/README.md` shows.
+2. **Show the dashboard.** Read the measures in `yard/powerbi/model.bim`. List the four tiles,
+   each with its measure and value, computed with `python yard/q.py` from the measure's
+   definition and the table's SQL in `yard/powerbi/rowsets.json`. One line per tile.
+3. **Hand over to the build.** In one line, say the next step: convert the Power BI report
+   `yard/powerbi/fix-it-first-time.pbit` to an agent with the Atlan analytics plugin, as `yard/README.md` shows.
 4. **Questions.** Answer questions about the yard with `python yard/q.py` only (read-only). State
    the definition you used in one line under each answer.
 
