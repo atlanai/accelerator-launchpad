@@ -15,7 +15,7 @@ Everything lives in `yard/` (read `yard/README.md` first). Nothing leaves the la
    each with its measure and value, computed with `python yard/q.py` from the measure's
    definition and the table's SQL in `yard/powerbi/rowsets.json`. One line per tile.
 3. **Hand over to the build.** In one line, say the next step: convert the Power BI report
-   `yard/powerbi/fix-it-first-time.pbit` to an agent with the Atlan analytics plugin, as `yard/README.md` shows.
+   `yard/powerbi/hard-hat-area-site-performance.pbit` to an agent with the Atlan analytics plugin, as `yard/README.md` shows.
 4. **Questions.** Answer questions about the yard with `python yard/q.py` only (read-only). State
    the definition you used in one line under each answer.
 
