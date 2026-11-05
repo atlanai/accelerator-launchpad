@@ -1,6 +1,6 @@
 project_id,project_name,client_name,site_town,project_type,contract_value_gbp,start_date,planned_end_date,actual_end_date,status
-P01,Mrs Kettle' Pergola,Mrs Kettle,Hammerton,residential,9800.00,2026-07-06,2026-07-24,2026-07-22,complete
-P02,Farmer Marrow' Barn Extension,Farmer Marrow,Buttercup Vale,farm,72000.00,2026-07-01,2026-08-28,2026-08-27,complete
+P01,Mrs Kettle's Pergola,Mrs Kettle,Hammerton,residential,9800.00,2026-07-06,2026-07-24,2026-07-22,complete
+P02,Farmer Marrow's Barn Extension,Farmer Marrow,Buttercup Vale,farm,72000.00,2026-07-01,2026-08-28,2026-08-27,complete
 P03,Buttercup Vale Wind Turbine Base,Buttercup Vale Council,Buttercup Vale,civic,150000.00,2026-07-13,2026-09-25,2026-10-23,complete
 P04,Sprout's Scarecrow Workshop,Sprout,Buttercup Vale,farm,10500.00,2026-08-03,2026-08-21,2026-09-04,complete
 P05,Hammerton Skate Park,Hammerton Town Council,Hammerton,civic,96000.00,2026-08-10,2026-09-30,2026-09-29,complete

@@ -30,11 +30,12 @@ python yard/q.py "SELECT crew_name, catchphrase FROM fixit.site.crew"
 
 ## Build an agent on it
 
-With the Atlan analytics plugin installed:
+The dashboard is a Power BI report saved as files in `yard/powerbi`, so no Power BI account is
+needed. With the Atlan analytics plugin installed:
 
 ```text
-Convert this dashboard to an agent. The model export is in yard/powerbi,
-the warehouse is yard/fixit.duckdb (run SQL with python yard/q.py),
+Convert this Power BI report to an agent: yard/powerbi
+The warehouse is yard/fixit.duckdb (run SQL with python yard/q.py),
 and the query history is yard/history/querylog.jsonl.
 ```
 
@@ -58,5 +59,4 @@ agent and runs a baseline.
 The dashboard, *Fix It First Time: Site Performance*, has four tiles: gross margin, rework cost,
 material waste and late jobs. Its model is in `powerbi/definition` (`model.tmdl`, `report.json`),
 and `powerbi/rowsets.json` holds the SQL each table is built from. The 110 queries in
-`history/querylog.jsonl` are what the yard's analysts ran, including a few that get it wrong, as
-real logs do.
+`history/querylog.jsonl` are what the yard's analysts ran.
