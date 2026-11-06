@@ -31,18 +31,17 @@ python yard/q.py "SELECT crew_name, catchphrase FROM fixit.site.crew"
 ## Build an agent on it
 
 The dashboard is a Power BI report saved as a file, `yard/powerbi/hard-hat-area-site-performance.pbit`, so no
-Power BI account is needed. With the Atlan analytics plugin installed:
+Power BI account is needed. With the Atlan Analytics plugin installed, in Claude Code or a Claude
+app chat:
 
 ```text
-Convert this Power BI report to an agent: https://app.powerbi.com/groups/00000000-0000-0000-0000-000000000001/reports/00000000-0000-0000-0000-000000000002
-I've already downloaded it: yard/powerbi/hard-hat-area-site-performance.pbit
-The warehouse is yard/fixit.duckdb (run SQL with python yard/q.py),
-and the query history is in fixit.atlan.query_shapes.
+Use Atlan Analytics to set up this repository so I can ask questions about its data:
+https://github.com/atlanai/analytics-agent-accelerator
 ```
 
-The link is a placeholder. The plugin records a report link with every dashboard it converts,
-and the yard's report has never been published, so it reads the file you name instead. The first
-time, the plugin asks once to set up its Power BI file reader.
+The plugin finds the yard's report, CSVs and query history, loads the data into DuckDB, previews
+the metrics and SQL, and asks where to publish them. In a Claude app chat it installs DuckDB into
+its sandbox the first time, so package downloads need to be allowed in the chat's code settings.
 
 The plugin turns the dashboard's four tiles into metrics, writes eval questions, registers your
 agent and runs a baseline.
