@@ -1,4 +1,5 @@
-"""Read-only SQL on the yard: python yard/q.py "SELECT ..."  (tables are fixit.site.*). Prints columns and up to 50 rows as JSON."""
+"""Read-only SQL on the yard: python yard/q.py "SELECT ..."  (tables are fixit.site.*, history is
+fixit.account_usage.query_history and fixit.atlan.query_shapes). Prints columns and up to 50 rows as JSON."""
 import json
 import pathlib
 import sys
