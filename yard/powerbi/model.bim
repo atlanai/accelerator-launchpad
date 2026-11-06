@@ -33,6 +33,7 @@
           {
             "name": "Gross Margin",
             "expression": "SUM(JOB_LEDGER[amount_gbp])",
+            "dataType": "double",
             "formatString": "\u00a3#,##0",
             "description": "Contract value less labour (rework included) and delivered materials, cancelled jobs excluded."
           }
@@ -101,6 +102,7 @@
           {
             "name": "Rework Cost",
             "expression": "CALCULATE(SUM(WORK_COST[cost_gbp]), WORK_COST[task_type] = \"rework\")",
+            "dataType": "double",
             "formatString": "\u00a3#,##0",
             "description": "Labour spent putting things right after a snag, at each crew member's or machine's hourly rate. Never billed."
           }
@@ -164,6 +166,7 @@
           {
             "name": "Material Waste",
             "expression": "SUM(DELIVERED_MATERIALS[wasted_value_gbp])",
+            "dataType": "double",
             "formatString": "\u00a3#,##0",
             "description": "Value of delivered material that ended up in a skip. Cancelled orders were never delivered, so never wasted."
           }
@@ -217,6 +220,7 @@
           {
             "name": "Late Jobs",
             "expression": "CALCULATE(COUNTROWS(JOBS), JOBS[delivery] = \"late\")",
+            "dataType": "int64",
             "formatString": "0",
             "description": "Completed jobs handed over after their planned end date. Jobs still open are not late yet."
           }
